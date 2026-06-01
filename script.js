@@ -4,20 +4,41 @@
    ========================================================================== */
 
 /* ---------- CONFIG ---------- */
-/* Links Amazon Kindle do Volume 1.
-   br: Amazon Brasil (R$) — atende leitores lusófonos do Brasil + África lusófona.
-   us: Amazon US (US$)    — atende leitores anglófonos + Portugal (lusófonos europeus). */
-const KINDLE_URLS = {
-  br: "https://www.amazon.com.br/dp/B0GX34LWFP",
-  us: "https://www.amazon.com/dp/B0GXSXHMML",
+/* Links Amazon Kindle por volume e por região.
+   br: Amazon Brasil (R$) — leitores lusófonos do Brasil + África lusófona.
+   us: Amazon US (US$)    — leitores anglófonos + Portugal (lusófonos europeus).
+   Para apontar um botão para um volume específico, usar
+   <a class="checkout-link" data-book="v2">…</a> no HTML. */
+const BOOKS = {
+  v1: {
+    br: "https://www.amazon.com.br/dp/B0GX34LWFP",
+    us: "https://www.amazon.com/dp/B0GXSXHMML",
+  },
+  v2: {
+    br: "https://www.amazon.com.br/dp/B0H2SGQT65",
+    us: "https://www.amazon.com/dp/B0H3175BN6",
+  },
 };
+// Alias retro-compatível — botões antigos sem data-book apontam para Vol. 1.
+const KINDLE_URLS = BOOKS.v1;
 
 /* Endpoint da pré-lista. Aceita Formspree, Buttondown, Mailchimp, Sender,
-   Convertkit ou qualquer endpoint que aceite POST com { email }.
-   Se vazio, o formulário apenas mostra confirmação visual.                  */
-const PRELIST_ENDPOINT = "";
+   ConvertKit ou qualquer endpoint que aceite POST com { email }.
 
-/* Preços por região (manter sincronizado com o preço actual na Amazon). */
+   SETUP RECOMENDADO (Formspree — 2 minutos, free 50 submissões/mês):
+   1. Criar conta em https://formspree.io
+   2. New form → Form name "Crônicas da Eternidade · pré-lista"
+      Email destinatário: cronicasdaeternidade7@gmail.com
+   3. Copiar o endpoint (formato https://formspree.io/f/XXXXXXX)
+   4. Colar abaixo, fazer commit e re-deploy
+
+   Enquanto este campo estiver vazio, os emails ficam apenas no localStorage
+   do leitor (não recebes nada). */
+const PRELIST_ENDPOINT = "";  // TODO: colar endpoint Formspree
+
+/* Preços por região (manter sincronizado com o preço actual na Amazon).
+   Última revisão: 2026-06-01 (Vol. 1). Re-verificar antes de cada campanha
+   ou alteração de preço no KDP. */
 const PRICES = {
   br: { currency: "R$",  single: "14,99" },
   us: { currency: "US$", single: "9.90"  },
@@ -36,7 +57,7 @@ function regionForLang(uiLang) {
 const I18N = {
   pt: {
     "meta.title": "Crônicas da Eternidade | A saga em HQ de Daniel Santana",
-    "meta.description": "Crônicas da Eternidade: a saga em HQ que recria a história bíblica do Trono ao Apocalipse. Volume 1 disponível em EPUB, português e inglês.",
+    "meta.description": "Crônicas da Eternidade: a saga em HQ que recria a história bíblica do Trono ao Apocalipse. Volumes 1 e 2 disponíveis no Kindle, em português e em inglês.",
 
     "nav.brand": "Crônicas da Eternidade",
     "nav.series": "A série",
@@ -159,9 +180,20 @@ const I18N = {
     "offer.note": "Configure os links de checkout em",
     "offer.note_2": "antes de publicar.",
 
-    "trust.t1": "Pagamento seguro via gateway externo (Hotmart / Gumroad / Stripe)",
-    "trust.t2": "Entrega digital instantânea por e-mail",
-    "trust.t3": "Garantia de 7 dias — devolução sem perguntas",
+    "offer2.eyebrow": "Continue a saga · Volume 2",
+    "offer2.title": "Gênesis: A Queda, a Promessa, Adoração e Morte.",
+    "offer2.body": "O Volume 2 continua o Arco I — a entrada do inimigo no Éden, a queda de Adão e Eva, e a primeira promessa messiânica em Gênesis 3:15. Também disponível no Kindle.",
+    "offer2.cover_caption": "Volume 2 · Capas PT e EN",
+    "offer2.plan_tag": "Disponível no Kindle",
+    "offer2.plan_title": "37 páginas · PT e EN",
+    "offer2.plan_l1": "Continuação directa do Volume 1",
+    "offer2.plan_l2": "Compra e leitura na Amazon Kindle",
+    "offer2.plan_l3": "Compatível com Kindle, app Kindle (iOS/Android) e leitura web",
+    "offer2.plan_cta": "Comprar Volume 2",
+
+    "trust.t1": "Compra directa via Amazon Kindle — pagamento seguro Amazon",
+    "trust.t2": "Leitura imediata em qualquer Kindle, app Kindle ou web reader",
+    "trust.t3": "Garantia de 7 dias — política de devolução padrão da Amazon",
 
     "prelist.eyebrow": "Lista de pré-venda",
     "prelist.title": "Acompanhe os próximos volumes da saga.",
@@ -180,19 +212,19 @@ const I18N = {
     "faq.a1": "Uma série em HQ que recria a história bíblica como saga contínua, do Trono ao Apocalipse, com fundamento em Gênesis–Apocalipse e nos escritos de Ellen G. White.",
     "faq.q2": "Quantos volumes a série terá?",
     "faq.a2": "A série é planejada arco por arco. O Volume 1 (Aurora e o Abismo) e o Volume 2 (Queda, Promessa, Adoração e Morte) iniciam o Arco I — Gênesis. Os próximos arcos cobrirão patriarcas, êxodo, reinos, profetas, evangelhos e Apocalipse.",
-    "faq.q3": "Qual é o formato dos arquivos?",
-    "faq.a3": "EPUB digital, compatível com Kindle (via Send to Kindle), Apple Books, Kobo, Google Play Livros e leitores Android/iOS.",
-    "faq.q4": "Posso ler no Kindle?",
-    "faq.a4": "Sim. Basta enviar o EPUB para o seu endereço @kindle.com pelo Send to Kindle (Amazon converte automaticamente).",
+    "faq.q3": "Em que formato recebo o livro?",
+    "faq.a3": "Os volumes são publicados directamente no Kindle (Amazon). Após a compra, o livro fica na sua biblioteca Amazon e é lido no Kindle (dispositivo ou app) sem download manual.",
+    "faq.q4": "Posso ler em outros dispositivos além do Kindle?",
+    "faq.a4": "Sim. Lê na app Kindle (iOS/Android), no Kindle Cloud Reader (web), no Kindle para PC/Mac e em qualquer Kindle físico. A posição de leitura sincroniza entre eles via sua conta Amazon.",
     "faq.q5": "A versão em inglês é tradução automática?",
     "faq.a5": "Não. A edição em inglês é roteirizada com linguagem direta para o público jovem (13–18), preservando a fidelidade teológica.",
     "faq.q6": "Quando sai o Volume 2?",
     "faq.a6": "O Volume 2 — “A Queda, a Promessa, Adoração e Morte” — já está disponível no Kindle, em português e em inglês.",
-    "faq.q7": "Como recebo o arquivo?",
-    "faq.a7": "Após o pagamento, o gateway envia automaticamente um e-mail com o link de download dos EPUBs.",
+    "faq.q7": "Preciso ter um Kindle físico para comprar?",
+    "faq.a7": "Não. Basta uma conta Amazon e a app Kindle (gratuita) no telemóvel, tablet, PC ou Mac. Também há o Kindle Cloud Reader, que abre no browser sem instalar nada.",
 
     "finalcta.title": "Comece a saga hoje.",
-    "finalcta.body": "Volume 1 disponível em EPUB. Português e inglês. Acesso imediato.",
+    "finalcta.body": "Volumes 1 e 2 disponíveis no Kindle, em português e em inglês. Leitura imediata.",
     "finalcta.cta": "Comprar no Kindle",
 
     "footer.contact": "Contato",
@@ -200,7 +232,7 @@ const I18N = {
   },
   en: {
     "meta.title": "Chronicles of Eternity | Daniel Santana's comic book saga",
-    "meta.description": "Chronicles of Eternity: the comic-book saga that retells biblical history from the Throne to the Apocalypse. Volume 1 available in EPUB, English and Portuguese.",
+    "meta.description": "Chronicles of Eternity: the comic-book saga that retells biblical history from the Throne to the Apocalypse. Volumes 1 and 2 available on Kindle, in English and Portuguese.",
 
     "nav.brand": "Chronicles of Eternity",
     "nav.series": "The series",
@@ -323,9 +355,20 @@ const I18N = {
     "offer.note": "Configure your checkout links in",
     "offer.note_2": "before publishing.",
 
-    "trust.t1": "Secure payment via external gateway (Hotmart / Gumroad / Stripe)",
-    "trust.t2": "Instant digital delivery via email",
-    "trust.t3": "7-day guarantee — no-questions refund",
+    "offer2.eyebrow": "Continue the saga · Volume 2",
+    "offer2.title": "Genesis: The Fall, the Promise, Worship and Death.",
+    "offer2.body": "Volume 2 continues Arc I — the enemy enters Eden, Adam and Eve fall, and the first messianic promise of Genesis 3:15 is spoken. Also available on Kindle.",
+    "offer2.cover_caption": "Volume 2 · PT and EN covers",
+    "offer2.plan_tag": "Available on Kindle",
+    "offer2.plan_title": "37 pages · EN and PT",
+    "offer2.plan_l1": "Direct continuation of Volume 1",
+    "offer2.plan_l2": "Buy and read on Amazon Kindle",
+    "offer2.plan_l3": "Works on Kindle devices, Kindle app (iOS/Android), and web reader",
+    "offer2.plan_cta": "Buy Volume 2",
+
+    "trust.t1": "Direct purchase via Amazon Kindle — secure Amazon checkout",
+    "trust.t2": "Instant reading on any Kindle device, Kindle app, or web reader",
+    "trust.t3": "7-day refund — Amazon's standard return policy",
 
     "prelist.eyebrow": "Pre-sale list",
     "prelist.title": "Follow the next volumes of the saga.",
@@ -344,19 +387,19 @@ const I18N = {
     "faq.a1": "A comic-book series that retells biblical history as a single, continuous saga, from the Throne to the Apocalypse, rooted in Genesis–Revelation and Ellen G. White's writings.",
     "faq.q2": "How many volumes will the series have?",
     "faq.a2": "The series is planned arc by arc. Volume 1 (The Dawn and the Abyss) and Volume 2 (The Fall, the Promise, Worship and Death) open Arc I — Genesis. Upcoming arcs will cover the patriarchs, the Exodus, the kingdoms, the prophets, the Gospels, and the Apocalypse.",
-    "faq.q3": "What's the file format?",
-    "faq.a3": "Digital EPUB, compatible with Kindle (via Send to Kindle), Apple Books, Kobo, Google Play Books, and Android/iOS readers.",
-    "faq.q4": "Can I read it on Kindle?",
-    "faq.a4": "Yes. Just send the EPUB to your @kindle.com address using Send to Kindle (Amazon converts it automatically).",
+    "faq.q3": "How do I get the book?",
+    "faq.a3": "Each volume is published directly on Kindle (Amazon). After purchase, the book sits in your Amazon library and you read it on a Kindle device or app — no manual download needed.",
+    "faq.q4": "Can I read on devices other than a Kindle?",
+    "faq.a4": "Yes. You can read on the Kindle app (iOS/Android), Kindle Cloud Reader (web), Kindle for PC/Mac, and any physical Kindle. Your reading position syncs across them via your Amazon account.",
     "faq.q5": "Is the English version machine-translated?",
     "faq.a5": "No. The English edition is written with direct teen-friendly language (ages 13–18) while preserving full theological fidelity.",
     "faq.q6": "When does Volume 2 come out?",
     "faq.a6": "Volume 2 — “The Fall, the Promise, Worship and Death” — is available on Kindle, in both English and Portuguese.",
-    "faq.q7": "How do I receive the file?",
-    "faq.a7": "After payment, the gateway automatically emails you the download link for the EPUBs.",
+    "faq.q7": "Do I need a Kindle device to buy?",
+    "faq.a7": "No. You just need an Amazon account and the free Kindle app (iOS/Android/PC/Mac). There's also the Kindle Cloud Reader — opens in your browser, no install needed.",
 
     "finalcta.title": "Begin the saga today.",
-    "finalcta.body": "Volume 1 available in EPUB. English and Portuguese. Instant access.",
+    "finalcta.body": "Volumes 1 and 2 available on Kindle, in English and Portuguese. Read instantly.",
     "finalcta.cta": "Buy on Kindle",
 
     "footer.contact": "Contact",
@@ -434,8 +477,8 @@ document.querySelectorAll("[data-lang-btn]").forEach((btn) => {
 /* ---------- SLIDESHOW DO HERO ---------- */
 /* Capas que se alternam no fundo do hero, por idioma. */
 const HERO_COVERS = {
-  pt: ["assets/cover-pt.png", "assets/vol2-capa.png", "assets/vol3-capa.png"],
-  en: ["assets/cover-en.png", "assets/vol2-capa-en.png", "assets/vol3-capa-en.png"],
+  pt: ["assets/cover-pt.webp", "assets/vol2-capa.webp", "assets/vol3-capa.webp"],
+  en: ["assets/cover-en.webp", "assets/vol2-capa-en.webp", "assets/vol3-capa-en.webp"],
 };
 
 (function heroSlideshow() {
@@ -487,7 +530,9 @@ checkoutLinks.forEach((link) => {
   link.addEventListener("click", (event) => {
     event.preventDefault();
     const region = document.documentElement.dataset.region || "br";
-    const url = KINDLE_URLS[region] || KINDLE_URLS.us;
+    const book = link.dataset.book || "v1";
+    const urls = BOOKS[book] || BOOKS.v1;
+    const url = urls[region] || urls.us;
     window.open(url, "_blank", "noopener,noreferrer");
   });
 });
