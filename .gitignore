@@ -1,0 +1,21 @@
+# OS / editor junk
+.DS_Store
+Thumbs.db
+*.swp
+*~
+*.bak
+
+# Local logs / temp
+*.log
+*.tmp
+
+# Build artifacts
+*.zip
+node_modules/
+.cache/
+
+# Credenciais / segredos (nunca commitar)
+.env
+.env.local
+*.secret
+ftp-creds*.txt
