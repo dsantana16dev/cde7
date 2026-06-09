@@ -550,12 +550,24 @@ blockquote {
 }
 
 .volumes-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  display: flex;
   gap: 28px;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  scroll-padding-left: 4px;
+  padding: 4px 4px 14px;
+  margin: 0 -4px;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-color: var(--gold-light) rgba(255, 255, 255, 0.05);
+  scrollbar-width: thin;
 }
+.volumes-grid::-webkit-scrollbar { height: 8px; }
+.volumes-grid::-webkit-scrollbar-track { background: rgba(255, 255, 255, 0.05); border-radius: 4px; }
+.volumes-grid::-webkit-scrollbar-thumb { background: var(--gold-light); border-radius: 4px; }
 
 .volume {
+  flex: 0 0 280px;
+  scroll-snap-align: start;
   display: flex;
   flex-direction: column;
   background: rgba(255, 255, 255, 0.03);
@@ -1226,7 +1238,8 @@ details p {
   .feature-grid, .audience-grid { grid-template-columns: repeat(2, 1fr); }
   .trust-grid { grid-template-columns: 1fr; }
   .extras-strip { grid-template-columns: 1fr 1fr; }
-  .volumes-grid { grid-template-columns: 1fr; gap: 22px; }
+  .volumes-grid { gap: 18px; }
+  .volume { flex-basis: 78vw; max-width: 320px; }
   .cover-symbol { font-size: 110px; }
 }
 
