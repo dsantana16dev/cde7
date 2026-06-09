@@ -5,10 +5,11 @@ de Daniel Santana (DMG Santana). A série recria a história bíblica como
 saga contínua, do Trono ao Apocalipse.
 
 **Estado atual:**
-- Volume 1 — *Gênesis: A Aurora e o Abismo* · disponível em EPUB (PT + EN)
+- Volume 1 — *Gênesis: A Aurora e o Abismo* (Rebelião e Criação) · disponível em EPUB (PT + EN)
 - Volume 2 — *Gênesis: A Queda, a Promessa, Adoração e Morte* · **disponível em PT e EN**
 - Volume 3 — *Gênesis: Ausência, Convite e Confusão* · em produção (pré-lista aberta)
-- Próximos volumes — em desenvolvimento (Patriarcas, Êxodo, Reinos, Profetas, Evangelhos, Apocalipse)
+- Volume 4 — *Gênesis: O Chamado da Promessa* · em produção (pré-lista aberta)
+- Próximos volumes — em desenvolvimento (Êxodo, Reinos, Profetas, Evangelhos, Apocalipse)
 
 ## Estrutura de arquivos
 
