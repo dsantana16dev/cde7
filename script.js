@@ -128,12 +128,14 @@ const I18N = {
     "volumes.v3_arc": "Ausência, Convite e Confusão",
     "volumes.v3_desc": "O testemunho de Enoque, a pregação de Noé, o Dilúvio e a Torre de Babel — a humanidade dividida entre o chamado de Deus e sua própria rebelião.",
     "volumes.v3_cta": "Entrar na pré-lista",
+    "volumes.v3_eta": "Previsão: jul/2026",
 
     "volumes.v4_num": "Volume 4",
     "volumes.v4_title": "Gênesis: O Chamado da Promessa",
     "volumes.v4_arc": "O Chamado da Promessa",
     "volumes.v4_desc": "A jornada de Abraão, a aliança divina e o nascimento do povo que carregaria a promessa de redenção para o mundo.",
     "volumes.v4_cta": "Entrar na pré-lista",
+    "volumes.v4_eta": "Previsão: set/2026",
 
     "volumes.vN_num": "Próximos volumes",
     "volumes.vN_title": "A saga continua",
@@ -309,12 +311,14 @@ const I18N = {
     "volumes.v3_arc": "Absence, Invitation and Confusion",
     "volumes.v3_desc": "The witness of Enoch, the preaching of Noah, the Flood, and the Tower of Babel — humanity divided between God's call and its own rebellion.",
     "volumes.v3_cta": "Join the pre-sale list",
+    "volumes.v3_eta": "ETA: Jul/2026",
 
     "volumes.v4_num": "Volume 4",
     "volumes.v4_title": "Genesis: The Call of the Promise",
     "volumes.v4_arc": "The Call of the Promise",
     "volumes.v4_desc": "The journey of Abraham, the divine covenant, and the birth of the people who would carry the promise of redemption to the world.",
     "volumes.v4_cta": "Join the pre-sale list",
+    "volumes.v4_eta": "ETA: Sep/2026",
 
     "volumes.vN_num": "Upcoming volumes",
     "volumes.vN_title": "The saga continues",
