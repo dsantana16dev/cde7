@@ -104,7 +104,9 @@ const I18N = {
     "volumes.eyebrow": "A saga em volumes",
     "volumes.title": "Os arcos de Crônicas da Eternidade.",
     "volumes.status_live": "Disponível",
+    "volumes.status_review": "Revisão final",
     "volumes.status_soon": "Em produção",
+    "volumes.status_script": "Fase de roteirização",
     "volumes.status_future": "Em desenvolvimento",
     "volumes.pages": "páginas",
     "volumes.eta": "Previsão: 2026",
@@ -136,6 +138,20 @@ const I18N = {
     "volumes.v4_desc": "A jornada de Abraão, a aliança divina e o nascimento do povo que carregaria a promessa de redenção para o mundo.",
     "volumes.v4_cta": "Entrar na pré-lista",
     "volumes.v4_eta": "Previsão: set/2026",
+
+    "volumes.v5_num": "Volume 5",
+    "volumes.v5_title": "Gênesis: Primogenitura, Betel, Angústia e Reconciliação",
+    "volumes.v5_arc": "Jacó e Esaú",
+    "volumes.v5_desc": "Primogenitura desprezada, bênção disputada, Betel, o Jaboque e a reconciliação que transforma Jacó em Israel.",
+    "volumes.v5_cta": "Entrar na pré-lista",
+    "volumes.v5_eta": "Em roteirização",
+
+    "volumes.v6_num": "Volume 6",
+    "volumes.v6_title": "Gênesis: O Sonhador, o Perdão e a Promessa",
+    "volumes.v6_arc": "José no Egito",
+    "volumes.v6_desc": "Os sonhos de José, a traição dos irmãos, o caminho pelo Egito, a providência divina e o perdão que preserva a promessa.",
+    "volumes.v6_cta": "Entrar na pré-lista",
+    "volumes.v6_eta": "Em roteirização",
 
     "volumes.vN_num": "Próximos volumes",
     "volumes.vN_title": "A saga continua",
@@ -287,7 +303,9 @@ const I18N = {
     "volumes.eyebrow": "The saga in volumes",
     "volumes.title": "The arcs of Chronicles of Eternity.",
     "volumes.status_live": "Available",
+    "volumes.status_review": "Final review",
     "volumes.status_soon": "In production",
+    "volumes.status_script": "Scripting phase",
     "volumes.status_future": "In development",
     "volumes.pages": "pages",
     "volumes.eta": "ETA: 2026",
@@ -319,6 +337,20 @@ const I18N = {
     "volumes.v4_desc": "The journey of Abraham, the divine covenant, and the birth of the people who would carry the promise of redemption to the world.",
     "volumes.v4_cta": "Join the pre-sale list",
     "volumes.v4_eta": "ETA: Sep/2026",
+
+    "volumes.v5_num": "Volume 5",
+    "volumes.v5_title": "Genesis: Birthright, Bethel, Anguish and Reconciliation",
+    "volumes.v5_arc": "Jacob and Esau",
+    "volumes.v5_desc": "The despised birthright, the disputed blessing, Bethel, the Jabbok, and the reconciliation that transforms Jacob into Israel.",
+    "volumes.v5_cta": "Join the pre-sale list",
+    "volumes.v5_eta": "In scripting",
+
+    "volumes.v6_num": "Volume 6",
+    "volumes.v6_title": "Genesis: The Dreamer, Forgiveness and the Promise",
+    "volumes.v6_arc": "Joseph in Egypt",
+    "volumes.v6_desc": "Joseph's dreams, his brothers' betrayal, the road through Egypt, divine providence, and the forgiveness that preserves the promise.",
+    "volumes.v6_cta": "Join the pre-sale list",
+    "volumes.v6_eta": "In scripting",
 
     "volumes.vN_num": "Upcoming volumes",
     "volumes.vN_title": "The saga continues",
@@ -493,8 +525,22 @@ document.querySelectorAll("[data-lang-btn]").forEach((btn) => {
 /* ---------- SLIDESHOW DO HERO ---------- */
 /* Capas que se alternam no fundo do hero, por idioma. */
 const HERO_COVERS = {
-  pt: ["assets/cover-pt.webp", "assets/vol2-capa.webp", "assets/vol3-capa.webp"],
-  en: ["assets/cover-en.webp", "assets/vol2-capa-en.webp", "assets/vol3-capa-en.webp"],
+  pt: [
+    "assets/cover-pt.webp",
+    "assets/vol2-capa.webp",
+    "assets/vol3-capa.webp",
+    "assets/vol4-capa.png",
+    "assets/vol5-capa.png",
+    "assets/vol6-capa.png",
+  ],
+  en: [
+    "assets/cover-en.webp",
+    "assets/vol2-capa-en.webp",
+    "assets/vol3-capa-en.webp",
+    "assets/vol4-capa-en.png",
+    "assets/vol5-capa-en.png",
+    "assets/vol6-capa-en.png",
+  ],
 };
 
 (function heroSlideshow() {
