@@ -563,6 +563,9 @@ Esta secao deve ser atualizada a cada decisao ou sprint concluida.
 - Ideia rejeitada parcialmente: segundo carrossel no hero principal.
 - Ideia recomendada: carrossel/abas de arcos dentro de uma nova secao editorial.
 - Nova demanda: estudar substituicao gradual da Amazon por venda direta e leitura dentro do site.
+- Capas do arco Exodo adicionadas aos assets: `vol7-capa.png`, `vol7-capa-en.png`, `vol8-capa.png`, `vol8-capa-en.png`.
+- Prototipo `index-conceito-exodo.html` atualizado para usar a capa real do Volume 7 no hero/bloco de Exodo e exibir os volumes 7 e 8 no roadmap visual.
+- Previa do Volume 3 adicionada ao site principal com as paginas 2, 11, 21, 26, 30 e 41 em PT e EN, usando assets `vol3-page-*.webp`.
 
 ### Proxima atualizacao
 

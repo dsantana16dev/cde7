@@ -129,12 +129,15 @@ Substitua em `assets/` mantendo os nomes:
 - `vol1-capa-pt.png`, `vol1-capa-en.png` — capa do card de Vol.1 (swap por idioma; 2:3)
 - `vol2-capa.png`, `vol2-capa-en.png` — capa do card de Vol.2 (swap por idioma; 2:3)
 - `vol3-capa.png`, `vol3-capa-en.png` — capa do card de Vol.3 (swap por idioma; 2:3)
+- `vol7-capa.png`, `vol7-capa-en.png` — primeira capa do arco Êxodo (PT/EN; 2:3)
+- `vol8-capa.png`, `vol8-capa-en.png` — segunda capa do arco Êxodo (PT/EN; 2:3)
 - `cover-pt.png`, `cover-en.png` — capa do Volume 1 (offer + slideshow do hero)
 - O slideshow do hero começa pelo Vol.3 e alterna automaticamente entre Vol.3, Vol.1 e Vol.2 do
   idioma activo (crossfade a cada ~5 s). O conjunto de capas vive em
   `HERO_COVERS` no `script.js`
 - `page-002-pt.png` … `page-020-en.png` — prévia do Vol.1 PT e EN (swap automático no toggle)
 - `vol2-page-004-pt.png` … `vol2-page-042-en.png` — prévia do Vol.2 (6 páginas, PT e EN)
+- `vol3-page-002-pt.webp` … `vol3-page-041-en.webp` — prévia do Vol.3 (páginas 2, 11, 21, 26, 30 e 41; PT e EN)
 - `page-02.jpg` … `page-30.jpg` — miniaturas da prévia (2:3)
 
 ## Hospedar os EPUBs

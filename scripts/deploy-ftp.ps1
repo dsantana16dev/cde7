@@ -1,5 +1,6 @@
 param(
-  [string]$EnvFile = ".env"
+  [string]$EnvFile = ".env",
+  [string[]]$Files
 )
 
 $ErrorActionPreference = "Stop"
@@ -33,6 +34,17 @@ function Read-DotEnv {
   return $values
 }
 
+function Join-FtpUrl {
+  param(
+    [string]$BaseUrl,
+    [string]$RelativePath
+  )
+
+  $normalized = $RelativePath.Replace("\", "/").TrimStart("/")
+  $segments = $normalized.Split("/") | ForEach-Object { [uri]::EscapeDataString($_) }
+  return $BaseUrl + ($segments -join "/")
+}
+
 $envValues = Read-DotEnv $EnvFile
 
 $ftpHost = $envValues["FTP_HOST"]
@@ -49,7 +61,9 @@ if (-not $remoteDir) { $remoteDir = "/" }
 if (-not $remoteDir.StartsWith("/")) { $remoteDir = "/" + $remoteDir }
 if (-not $remoteDir.EndsWith("/")) { $remoteDir = $remoteDir + "/" }
 
-if ($fileList) {
+if ($Files -and $Files.Count) {
+  $files = $Files
+} elseif ($fileList) {
   $files = $fileList.Split(",") | ForEach-Object { $_.Trim() } | Where-Object { $_ }
 } else {
   $files = @("index.html", "script.js", "styles.css")
@@ -63,7 +77,7 @@ foreach ($file in $files) {
     throw "Local file not found: $file"
   }
 
-  $remoteUrl = $baseUrl + [uri]::EscapeDataString((Split-Path -Leaf $file))
+  $remoteUrl = Join-FtpUrl $baseUrl $file
   & $curl.Source --fail --silent --show-error --ftp-pasv --user "$ftpUser`:$ftpPass" --upload-file $file $remoteUrl
   if ($LASTEXITCODE -ne 0) { throw "FTP upload failed for $file" }
 
