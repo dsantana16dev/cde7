@@ -18,6 +18,10 @@ const BOOKS = {
     br: "https://www.amazon.com.br/dp/B0H2SGQT65",
     us: "https://www.amazon.com/dp/B0H3175BN6",
   },
+  v3: {
+    br: "https://www.amazon.com.br/dp/B0HBZDP1PF",
+    us: "https://www.amazon.com/dp/B0HC4SWJDS",
+  },
 };
 // Alias retro-compatível — botões antigos sem data-book apontam para Vol. 1.
 const KINDLE_URLS = BOOKS.v1;
@@ -57,7 +61,7 @@ function regionForLang(uiLang) {
 const I18N = {
   pt: {
     "meta.title": "Crônicas da Eternidade | A saga em HQ de Daniel Santana",
-    "meta.description": "Crônicas da Eternidade: a saga em HQ que recria a história bíblica do Trono ao Apocalipse. Volumes 1 e 2 disponíveis no Kindle, em português e em inglês.",
+    "meta.description": "Crônicas da Eternidade: a saga em HQ que recria a história bíblica do Trono ao Apocalipse. Volumes 1, 2 e 3 disponíveis no Kindle, em português e em inglês.",
 
     "nav.brand": "Crônicas da Eternidade",
     "nav.series": "A série",
@@ -70,9 +74,9 @@ const I18N = {
     "hero.title": "Crônicas da Eternidade",
     "hero.sub": "Do Trono ao Apocalipse — a história bíblica em quadrinhos.",
     "hero.copy": "Uma série épica em HQ que recria a grande controvérsia entre Cristo e Satanás — da rebelião no Céu até a restauração final. Cada volume, um arco bíblico. Cada arco, uma janela de luz e abismo.",
-    "hero.cta_buy": "Comprar Volume 1",
+    "hero.cta_buy": "Comprar Volume 3",
     "hero.cta_explore": "Ver volumes",
-    "hero.badge_status": "Vols. 1 e 2 disponíveis",
+    "hero.badge_status": "Vols. 1, 2 e 3 disponíveis",
 
     "facts.universe_value": "Universo bíblico",
     "facts.universe_label": "Da criação ao juízo final",
@@ -129,8 +133,9 @@ const I18N = {
     "volumes.v3_title": "Gênesis: Ausência, Convite e Confusão",
     "volumes.v3_arc": "Ausência, Convite e Confusão",
     "volumes.v3_desc": "O testemunho de Enoque, a pregação de Noé, o Dilúvio e a Torre de Babel — a humanidade dividida entre o chamado de Deus e sua própria rebelião.",
+    "volumes.v3_status": "Disponível",
+    "volumes.v3_cta_buy": "Comprar Volume 3",
     "volumes.v3_cta": "Entrar na pré-lista",
-    "volumes.v3_eta": "Previsão: jul/2026",
 
     "volumes.v4_num": "Volume 4",
     "volumes.v4_title": "Gênesis: O Chamado da Promessa",
@@ -171,7 +176,7 @@ const I18N = {
     "preview.p6": "Sábado",
 
     "preview.v2_eyebrow": "Prévia · Volume 2",
-    "preview.v2_title": "Páginas do Volume 2, agora disponível em português.",
+    "preview.v2_title": "Páginas do Volume 2, disponível em português e inglês.",
     "preview.v2_p1": "Éden",
     "preview.v2_p2": "A serpente",
     "preview.v2_p3": "A queda",
@@ -193,7 +198,7 @@ const I18N = {
     "offer.eyebrow": "Comece a saga · Volume 1",
     "offer.title": "Gênesis: A Aurora e o Abismo.",
     "offer.body": "O primeiro volume da série já está disponível no Kindle. Compra directa na Amazon — leitura imediata em qualquer dispositivo Kindle ou app oficial.",
-    "offer.cover_caption": "Volume 1 · edição em português",
+    "offer.cover_caption": "Volume 1 · Capas PT e EN",
     "offer.currency": "R$",
     "offer.plan1_tag": "Disponível no Kindle",
     "offer.plan1_title": "Edição em português",
@@ -215,18 +220,29 @@ const I18N = {
     "offer2.plan_l3": "Compatível com Kindle, app Kindle (iOS/Android) e leitura web",
     "offer2.plan_cta": "Comprar Volume 2",
 
+    "offer3.eyebrow": "Novo lançamento · Volume 3",
+    "offer3.title": "Gênesis: Ausência, Convite e Confusão.",
+    "offer3.body": "O Volume 3 fecha o ciclo antediluviano — o testemunho de Enoque, a pregação de Noé, o Dilúvio e a Torre de Babel. Já disponível no Kindle, em português e em inglês.",
+    "offer3.cover_caption": "Volume 3 · Capas PT e EN",
+    "offer3.plan_tag": "Novo · disponível no Kindle",
+    "offer3.plan_title": "Edições PT e EN",
+    "offer3.plan_l1": "Continuação directa do Volume 2",
+    "offer3.plan_l2": "Compra e leitura na Amazon Kindle",
+    "offer3.plan_l3": "Compatível com Kindle, app Kindle (iOS/Android) e leitura web",
+    "offer3.plan_cta": "Comprar Volume 3",
+
     "trust.t1": "Compra directa via Amazon Kindle — pagamento seguro Amazon",
     "trust.t2": "Leitura imediata em qualquer Kindle, app Kindle ou web reader",
     "trust.t3": "Garantia de 7 dias — política de devolução padrão da Amazon",
 
     "prelist.eyebrow": "Lista de pré-venda",
     "prelist.title": "Acompanhe os próximos volumes da saga.",
-    "prelist.body": "Entre na lista e seja avisado dos próximos lançamentos da saga — o Volume 3 e seguintes. Leitores dos volumes anteriores entram com desconto automático.",
+    "prelist.body": "Entre na lista e seja avisado dos próximos lançamentos da saga — o Volume 4 e seguintes. Leitores dos volumes anteriores entram com desconto automático.",
     "prelist.label": "Seu e-mail",
     "prelist.placeholder": "seu@email.com",
     "prelist.cta": "Quero ser avisado",
     "prelist.note": "Sem spam. Apenas anúncios da série Crônicas da Eternidade.",
-    "prelist.success": "Pronto! Você foi adicionado à lista. Em breve avisaremos sobre o Volume 2.",
+    "prelist.success": "Pronto! Você foi adicionado à lista. Em breve avisaremos sobre o Volume 4.",
     "prelist.local": "Anotado neste navegador. Configure PRELIST_ENDPOINT em script.js para receber os e-mails.",
     "prelist.error": "Não foi possível enviar agora. Tente novamente em instantes.",
 
@@ -242,13 +258,13 @@ const I18N = {
     "faq.a4": "Sim. Lê na app Kindle (iOS/Android), no Kindle Cloud Reader (web), no Kindle para PC/Mac e em qualquer Kindle físico. A posição de leitura sincroniza entre eles via sua conta Amazon.",
     "faq.q5": "A versão em inglês é tradução automática?",
     "faq.a5": "Não. A edição em inglês é roteirizada com linguagem direta para o público jovem (13–18), preservando a fidelidade teológica.",
-    "faq.q6": "Quando sai o Volume 2?",
-    "faq.a6": "O Volume 2 — “A Queda, a Promessa, Adoração e Morte” — já está disponível no Kindle, em português e em inglês.",
+    "faq.q6": "Quando sai o Volume 4?",
+    "faq.a6": "Os Volumes 1, 2 e 3 já estão disponíveis no Kindle, em português e em inglês — o Volume 3, “Ausência, Convite e Confusão”, é o lançamento mais recente. O Volume 4, “O Chamado da Promessa”, tem previsão para set/2026; entre na pré-lista para ser avisado.",
     "faq.q7": "Preciso ter um Kindle físico para comprar?",
     "faq.a7": "Não. Basta uma conta Amazon e a app Kindle (gratuita) no telemóvel, tablet, PC ou Mac. Também há o Kindle Cloud Reader, que abre no browser sem instalar nada.",
 
     "finalcta.title": "Comece a saga hoje.",
-    "finalcta.body": "Volumes 1 e 2 disponíveis no Kindle, em português e em inglês. Leitura imediata.",
+    "finalcta.body": "Volumes 1, 2 e 3 disponíveis no Kindle, em português e em inglês. Leitura imediata.",
     "finalcta.cta": "Comprar no Kindle",
 
     "footer.contact": "Contato",
@@ -256,7 +272,7 @@ const I18N = {
   },
   en: {
     "meta.title": "Chronicles of Eternity | Daniel Santana's comic book saga",
-    "meta.description": "Chronicles of Eternity: the comic-book saga that retells biblical history from the Throne to the Apocalypse. Volumes 1 and 2 available on Kindle, in English and Portuguese.",
+    "meta.description": "Chronicles of Eternity: the comic-book saga that retells biblical history from the Throne to the Apocalypse. Volumes 1, 2 and 3 available on Kindle, in English and Portuguese.",
 
     "nav.brand": "Chronicles of Eternity",
     "nav.series": "The series",
@@ -269,9 +285,9 @@ const I18N = {
     "hero.title": "Chronicles of Eternity",
     "hero.sub": "From the Throne to the Apocalypse — biblical history in comics.",
     "hero.copy": "An epic comic-book series that retells the great controversy between Christ and Satan — from the rebellion in Heaven to the final restoration. Every volume, a biblical arc. Every arc, a window of light and abyss.",
-    "hero.cta_buy": "Buy Volume 1",
+    "hero.cta_buy": "Buy Volume 3",
     "hero.cta_explore": "See volumes",
-    "hero.badge_status": "Vols. 1 & 2 available",
+    "hero.badge_status": "Vols. 1, 2 & 3 available",
 
     "facts.universe_value": "Biblical universe",
     "facts.universe_label": "From creation to final judgment",
@@ -328,8 +344,9 @@ const I18N = {
     "volumes.v3_title": "Genesis: Absence, Invitation and Confusion",
     "volumes.v3_arc": "Absence, Invitation and Confusion",
     "volumes.v3_desc": "The witness of Enoch, the preaching of Noah, the Flood, and the Tower of Babel — humanity divided between God's call and its own rebellion.",
+    "volumes.v3_status": "Available",
+    "volumes.v3_cta_buy": "Buy Volume 3",
     "volumes.v3_cta": "Join the pre-sale list",
-    "volumes.v3_eta": "ETA: Jul/2026",
 
     "volumes.v4_num": "Volume 4",
     "volumes.v4_title": "Genesis: The Call of the Promise",
@@ -370,7 +387,7 @@ const I18N = {
     "preview.p6": "Sabbath",
 
     "preview.v2_eyebrow": "Preview · Volume 2",
-    "preview.v2_title": "Pages from Volume 2, now available in Portuguese.",
+    "preview.v2_title": "Pages from Volume 2, available in English and Portuguese.",
     "preview.v2_p1": "Eden",
     "preview.v2_p2": "The serpent",
     "preview.v2_p3": "The fall",
@@ -392,7 +409,7 @@ const I18N = {
     "offer.eyebrow": "Start the saga · Volume 1",
     "offer.title": "Genesis: The Dawn and the Abyss.",
     "offer.body": "Volume 1 is available now on Kindle. Buy directly on Amazon — read instantly on any Kindle device or official app.",
-    "offer.cover_caption": "Volume 1 · English edition",
+    "offer.cover_caption": "Volume 1 · PT and EN covers",
     "offer.currency": "US$",
     "offer.plan1_tag": "Available on Kindle",
     "offer.plan1_title": "English edition",
@@ -414,18 +431,29 @@ const I18N = {
     "offer2.plan_l3": "Works on Kindle devices, Kindle app (iOS/Android), and web reader",
     "offer2.plan_cta": "Buy Volume 2",
 
+    "offer3.eyebrow": "New release · Volume 3",
+    "offer3.title": "Genesis: Absence, Invitation and Confusion.",
+    "offer3.body": "Volume 3 closes the antediluvian cycle — the witness of Enoch, the preaching of Noah, the Flood, and the Tower of Babel. Available now on Kindle, in English and Portuguese.",
+    "offer3.cover_caption": "Volume 3 · PT and EN covers",
+    "offer3.plan_tag": "New · available on Kindle",
+    "offer3.plan_title": "EN and PT editions",
+    "offer3.plan_l1": "Direct continuation of Volume 2",
+    "offer3.plan_l2": "Buy and read on Amazon Kindle",
+    "offer3.plan_l3": "Works on Kindle devices, Kindle app (iOS/Android), and web reader",
+    "offer3.plan_cta": "Buy Volume 3",
+
     "trust.t1": "Direct purchase via Amazon Kindle — secure Amazon checkout",
     "trust.t2": "Instant reading on any Kindle device, Kindle app, or web reader",
     "trust.t3": "7-day refund — Amazon's standard return policy",
 
     "prelist.eyebrow": "Pre-sale list",
     "prelist.title": "Follow the next volumes of the saga.",
-    "prelist.body": "Join the list and get notified about upcoming releases — Volume 3 and beyond. Past readers automatically receive a discount.",
+    "prelist.body": "Join the list and get notified about upcoming releases — Volume 4 and beyond. Past readers automatically receive a discount.",
     "prelist.label": "Your email",
     "prelist.placeholder": "you@email.com",
     "prelist.cta": "Notify me",
     "prelist.note": "No spam. Only Chronicles of Eternity announcements.",
-    "prelist.success": "You're in! We'll let you know as soon as Volume 2 is ready.",
+    "prelist.success": "You're in! We'll let you know as soon as Volume 4 is ready.",
     "prelist.local": "Saved in this browser. Configure PRELIST_ENDPOINT in script.js to actually receive the emails.",
     "prelist.error": "We couldn't submit right now. Please try again in a moment.",
 
@@ -441,13 +469,13 @@ const I18N = {
     "faq.a4": "Yes. You can read on the Kindle app (iOS/Android), Kindle Cloud Reader (web), Kindle for PC/Mac, and any physical Kindle. Your reading position syncs across them via your Amazon account.",
     "faq.q5": "Is the English version machine-translated?",
     "faq.a5": "No. The English edition is written with direct teen-friendly language (ages 13–18) while preserving full theological fidelity.",
-    "faq.q6": "When does Volume 2 come out?",
-    "faq.a6": "Volume 2 — “The Fall, the Promise, Worship and Death” — is available on Kindle, in both English and Portuguese.",
+    "faq.q6": "When does Volume 4 come out?",
+    "faq.a6": "Volumes 1, 2 and 3 are all available on Kindle, in both English and Portuguese — Volume 3, “Absence, Invitation and Confusion”, is the latest release. Volume 4, “The Call of the Promise”, is expected in Sep/2026; join the pre-sale list to be notified.",
     "faq.q7": "Do I need a Kindle device to buy?",
     "faq.a7": "No. You just need an Amazon account and the free Kindle app (iOS/Android/PC/Mac). There's also the Kindle Cloud Reader — opens in your browser, no install needed.",
 
     "finalcta.title": "Begin the saga today.",
-    "finalcta.body": "Volumes 1 and 2 available on Kindle, in English and Portuguese. Read instantly.",
+    "finalcta.body": "Volumes 1, 2 and 3 available on Kindle, in English and Portuguese. Read instantly.",
     "finalcta.cta": "Buy on Kindle",
 
     "footer.contact": "Contact",
@@ -526,17 +554,17 @@ document.querySelectorAll("[data-lang-btn]").forEach((btn) => {
 /* Capas que se alternam no fundo do hero, por idioma. */
 const HERO_COVERS = {
   pt: [
+    "assets/vol3-capa.webp",
     "assets/cover-pt.webp",
     "assets/vol2-capa.webp",
-    "assets/vol3-capa.webp",
     "assets/vol4-capa.png",
     "assets/vol5-capa.png",
     "assets/vol6-capa.png",
   ],
   en: [
+    "assets/vol3-capa-en.webp",
     "assets/cover-en.webp",
     "assets/vol2-capa-en.webp",
-    "assets/vol3-capa-en.webp",
     "assets/vol4-capa-en.png",
     "assets/vol5-capa-en.png",
     "assets/vol6-capa-en.png",

@@ -7,8 +7,8 @@ saga contínua, do Trono ao Apocalipse.
 **Estado atual:**
 - Volume 1 — *Gênesis: A Aurora e o Abismo* (Rebelião e Criação) · disponível em EPUB (PT + EN)
 - Volume 2 — *Gênesis: A Queda, a Promessa, Adoração e Morte* · **disponível em PT e EN**
-- Volume 3 — *Gênesis: Ausência, Convite e Confusão* · em produção (pré-lista aberta)
-- Volume 4 — *Gênesis: O Chamado da Promessa* · em produção (pré-lista aberta)
+- Volume 3 — *Gênesis: Ausência, Convite e Confusão* · **disponível em PT e EN**
+- Volume 4 — *Gênesis: O Chamado da Promessa* · revisão final (previsão set/2026, pré-lista aberta)
 - Próximos volumes — em desenvolvimento (Êxodo, Reinos, Profetas, Evangelhos, Apocalipse)
 
 ## Estrutura de arquivos
@@ -28,10 +28,10 @@ landpage/
 2. **Quick facts** — universo bíblico, formato, idiomas, autor
 3. **A série** — visão de longo prazo da saga
 4. **Pilares** — fidelidade bíblica, arte cinematográfica, dossiês, bilíngue
-5. **Volumes** — roadmap: Vol.1 (disponível), Vol.2 (em produção), próximos volumes
+5. **Volumes** — roadmap: Vols. 1–3 (disponíveis), Vol.4 (revisão final), próximos volumes
 6. **Prévia · Volume 1** — galeria com lightbox de 6 páginas
 7. **Público** — para quem é a série
-8. **Oferta · Volume 1** — botão único "Comprar no Kindle" (idioma + região decidem loja/preço)
+8. **Ofertas · Volumes 1, 2 e 3** — uma seção por volume; o botão decide loja/preço por idioma + região
 9. **Trust** — pagamento seguro, entrega instantânea, garantia 7 dias
 10. **Pré-lista** — captura de e-mail para anúncios dos próximos volumes
 11. **FAQ** — 7 perguntas frequentes
@@ -48,21 +48,26 @@ python -m http.server 8080
 # abrir http://localhost:8080
 ```
 
-## Configurar Kindle (Volume 1)
+## Configurar Kindle (links por volume)
 
-A venda é feita directamente na Amazon Kindle. `script.js` → objecto
-`KINDLE_URLS`:
+A venda é feita directamente na Amazon Kindle. `script.js` → objecto `BOOKS`,
+uma entrada por volume, cada uma com a loja `br` (edição PT) e `us` (edição EN):
 
 ```js
-const KINDLE_URLS = {
-  br: "https://www.amazon.com.br/dp/B0GX34LWFP",  // R$ — Brasil + África lusófona (Vol.1)
-  us: "https://www.amazon.com/dp/B0GXSXHMML",      // US$ — Portugal + anglófonos + resto (Vol.1)
+const BOOKS = {
+  v1: { br: ".../dp/B0GX34LWFP", us: ".../dp/B0GXSXHMML" },
+  v2: { br: ".../dp/B0H2SGQT65", us: ".../dp/B0H3175BN6" },
+  v3: { br: ".../dp/B0HBZDP1PF", us: ".../dp/B0HC4SWJDS" },
 };
 ```
 
-Volume 2 tem links directos no card do `index.html`:
-- PT (BR) → `https://www.amazon.com.br/dp/B0H2SGQT65`
-- EN (US) → `https://www.amazon.com/dp/B0H3175BN6`
+No HTML, cada botão escolhe o volume com `data-book`:
+
+```html
+<a class="button button-primary checkout-link" data-book="v3">Comprar Volume 3</a>
+```
+
+Botões sem `data-book` caem no Vol.1 por retrocompatibilidade; CTAs de lançamento devem apontar explicitamente para o volume desejado.
 
 A decisão de qual link/preço mostrar é automática via `regionForLang()`:
 
@@ -73,7 +78,7 @@ A decisão de qual link/preço mostrar é automática via `regionForLang()`:
 Os botões "Comprar" abrem o Kindle em nova aba. Não há gateway próprio
 nem hospedagem de EPUB no site.
 
-## Configurar a pré-lista (Volume 2 e futuros)
+## Configurar a pré-lista (Volume 4 e futuros)
 
 `script.js` → constante `PRELIST_ENDPOINT`:
 
@@ -104,16 +109,18 @@ const PRICES = {
 ## Editar textos da série
 
 Tudo vive no objeto `I18N` em `script.js`. Cada chave existe nas seções `pt`
-e `en` lado a lado. Para adicionar um novo Volume 3 ao roadmap:
+e `en` lado a lado. Para adicionar um novo volume ao roadmap (ex.: `v7`):
 
 1. Duplicar o `<article class="volume volume-future">` em `index.html`,
-   trocando o `data-i18n` para `volumes.v3_*`.
-2. Adicionar as chaves `volumes.v3_num`, `v3_title`, `v3_arc`, `v3_desc`,
-   `v3_cta` nas duas línguas do `I18N`.
+   trocando o `data-i18n` para `volumes.v7_*`.
+2. Adicionar as chaves `volumes.v7_num`, `v7_title`, `v7_arc`, `v7_desc`,
+   `v7_cta` nas duas línguas do `I18N`.
 3. Quando o volume entrar em produção, trocar `volume-future` por
    `volume-soon` (e o `data-i18n="volumes.status_*"` correspondente).
-4. Quando ficar disponível, trocar para `volume-live`, adicionar a classe
-   `checkout-link` ao botão e (se for outro produto) ajustar `KINDLE_URLS`.
+4. Quando ficar disponível: trocar para `volume-live`, usar o badge
+   `status-live`, adicionar `checkout-link` + `data-book="v7"` ao botão,
+   registar o par de ASINs em `BOOKS` e criar a seção de oferta
+   (`<section class="offer" id="comprar-vol7">`, chaves `offer7.*`).
 
 ## Trocar capas e prévias
 
@@ -123,7 +130,7 @@ Substitua em `assets/` mantendo os nomes:
 - `vol2-capa.png`, `vol2-capa-en.png` — capa do card de Vol.2 (swap por idioma; 2:3)
 - `vol3-capa.png`, `vol3-capa-en.png` — capa do card de Vol.3 (swap por idioma; 2:3)
 - `cover-pt.png`, `cover-en.png` — capa do Volume 1 (offer + slideshow do hero)
-- O slideshow do hero alterna automaticamente entre Vol.1, Vol.2 e Vol.3 do
+- O slideshow do hero começa pelo Vol.3 e alterna automaticamente entre Vol.3, Vol.1 e Vol.2 do
   idioma activo (crossfade a cada ~5 s). O conjunto de capas vive em
   `HERO_COVERS` no `script.js`
 - `page-002-pt.png` … `page-020-en.png` — prévia do Vol.1 PT e EN (swap automático no toggle)
@@ -147,13 +154,13 @@ entrega final do livro é responsabilidade da Amazon após a compra.
 
 ## Checklist antes de publicar
 
-- [ ] Conferir `KINDLE_URLS.br` e `.us` em `script.js` (ASINs correctos)
+- [ ] Conferir `BOOKS.v1`, `BOOKS.v2` e `BOOKS.v3` em `script.js` (ASINs correctos)
 - [ ] Conferir `PRICES.br` (R$) e `.us` (US$) batem com a Amazon
 - [ ] Preencher `PRELIST_ENDPOINT` em `script.js` (Formspree, Buttondown, etc.)
 - [ ] Conferir/atualizar capas dos volumes em `assets/`
 - [ ] Trocar e-mail de contato no `<footer>` do `index.html` se necessário
 - [ ] Conferir prévia em mobile (DevTools responsive)
-- [ ] Atualizar `og:image` se trocar a capa principal
+- [ ] Conferir `og:image` no `index.html` para a capa do lançamento atual
 
 ---
 
